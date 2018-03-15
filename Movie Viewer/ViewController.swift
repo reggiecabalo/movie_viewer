@@ -23,8 +23,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var image_poster_landscape: UIImageView!
     @IBOutlet weak var movieCast: UILabel!
     
-    
-    var cast: [Cast]?
+    var theaterName: String!
     override func viewDidLoad() {
         super.viewDidLoad()
         let url = "http://ec2-52-76-75-52.ap-southeast-1.compute.amazonaws.com/movie.json"
@@ -61,6 +60,8 @@ class ViewController: UIViewController {
             
             self.movieCast.text = stringCast
             
+            self.theaterName = movieResult?.theater!
+            
             DispatchQueue.global().async {
                 let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
                 let data_landscape = try? Data(contentsOf: url_poster_landscape!)
@@ -70,6 +71,15 @@ class ViewController: UIViewController {
                 }
             }
         }
+    }
+    
+
+    @IBAction func goToSeatMap(_ sender: Any) {
+        
+        let seatMapVC = self.storyboard?.instantiateViewController(withIdentifier: "SeatMapViewController") as! SeatMapViewController
+        seatMapVC.theaterDataString = self.theaterName
+        self.navigationController?.pushViewController(seatMapVC, animated: true)
+        
     }
     
     func minutesToHoursMinutes (minutes : Int) -> (hours : Int , leftMinutes : Int) {

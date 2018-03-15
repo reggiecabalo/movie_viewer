@@ -9,7 +9,6 @@
 import ObjectMapper
 
 class Movie: Mappable {
-    var location: String?
 
     var movieId: String?
     var advisory_rating: String?
@@ -29,7 +28,7 @@ class Movie: Mappable {
     var trailer: String?
     var average_rating: String?
     var total_reviews: String?
-    var variants: [Variants]?
+    var variants: [String]?
     var theater: String?
     var order: Int?
     var is_featured: Bool?
@@ -63,31 +62,6 @@ class Movie: Mappable {
         order <- map["order"]
         is_featured <- map["is_featured"]
         your_rating <- map["your_rating"]
-    }
-}
-
-
-class Cast: Mappable {
-    var actors: [String]?
-    
-    required init?(map: Map){
-        
-    }
-    
-    func mapping(map: Map) {
-       actors <- map[""]
-    }
-}
-
-class Variants: Mappable {
-    var variants: [String]?
-    
-    required init?(map: Map){
-        
-    }
-    
-    func mapping(map: Map) {
-        variants <- map[""]
     }
 }
 

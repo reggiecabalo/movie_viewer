@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A8263900205A603400D0FCC6 /* SeatMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82638FF205A603400D0FCC6 /* SeatMapViewController.swift */; };
+		A8263902205A63A900D0FCC6 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8263901205A63A900D0FCC6 /* Schedule.swift */; };
 		A8272137DF5D8F58B589D181 /* Pods_Movie_Viewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBFF5651162CCEEA2DF0F771 /* Pods_Movie_Viewer.framework */; };
 		A890A2E72059029A00F04ED7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A890A2E62059029A00F04ED7 /* AppDelegate.swift */; };
 		A890A2E92059029A00F04ED7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A890A2E82059029A00F04ED7 /* ViewController.swift */; };
@@ -18,6 +20,8 @@
 
 /* Begin PBXFileReference section */
 		8C46C87DF2B5488070AADB0E /* Pods-Movie Viewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movie Viewer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Movie Viewer/Pods-Movie Viewer.release.xcconfig"; sourceTree = "<group>"; };
+		A82638FF205A603400D0FCC6 /* SeatMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatMapViewController.swift; sourceTree = "<group>"; };
+		A8263901205A63A900D0FCC6 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		A890A2E32059029A00F04ED7 /* Movie Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Movie Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A890A2E62059029A00F04ED7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A890A2E82059029A00F04ED7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +88,7 @@
 				A890A2E62059029A00F04ED7 /* AppDelegate.swift */,
 				A890A2E82059029A00F04ED7 /* ViewController.swift */,
 				A890A2EA2059029A00F04ED7 /* Main.storyboard */,
+				A82638FF205A603400D0FCC6 /* SeatMapViewController.swift */,
 				A890A2ED2059029A00F04ED7 /* Assets.xcassets */,
 				A890A2EF2059029A00F04ED7 /* LaunchScreen.storyboard */,
 				A890A2F22059029A00F04ED7 /* Info.plist */,
@@ -95,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				A890A2F82059120000F04ED7 /* Movie.swift */,
+				A8263901205A63A900D0FCC6 /* Schedule.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -234,8 +240,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8263900205A603400D0FCC6 /* SeatMapViewController.swift in Sources */,
 				A890A2E92059029A00F04ED7 /* ViewController.swift in Sources */,
 				A890A2E72059029A00F04ED7 /* AppDelegate.swift in Sources */,
+				A8263902205A63A900D0FCC6 /* Schedule.swift in Sources */,
 				A890A2F92059120000F04ED7 /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

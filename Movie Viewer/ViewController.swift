@@ -22,6 +22,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var image_poster: UIImageView!
     @IBOutlet weak var image_poster_landscape: UIImageView!
     @IBOutlet weak var movieCast: UILabel!
+    
+    
+    var cast: [Cast]?
     override func viewDidLoad() {
         super.viewDidLoad()
         let url = "http://ec2-52-76-75-52.ap-southeast-1.compute.amazonaws.com/movie.json"
@@ -53,6 +56,10 @@ class ViewController: UIViewController {
             
             let url = URL(string: (movieResult?.poster!)!)
             let url_poster_landscape = URL(string: (movieResult?.poster_landscape!)!)
+            
+            let stringCast = movieResult?.cast?.joined(separator: ", ")
+            
+            self.movieCast.text = stringCast
             
             DispatchQueue.global().async {
                 let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch

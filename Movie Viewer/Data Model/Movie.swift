@@ -14,7 +14,7 @@ class Movie: Mappable {
     var movieId: String?
     var advisory_rating: String?
     var canonical_title: String?
-    var cast: [Cast]?
+    var cast: [String]?
     var genre: String?
     var has_schedule: Int?
     var is_inactive: Int?

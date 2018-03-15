@@ -156,7 +156,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="rpG-us-W1g"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="9"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>

@@ -13,7 +13,8 @@ import AlamofireObjectMapper
 class SeatMapViewController: UIViewController {
     
     var theaterDataString: String!
-    @IBOutlet weak var collectionView: UICollectionView!
+    var arrayNumberOfSeats: [AnyObject]!
+    @IBOutlet weak var seatCollectionView: UICollectionView!
     @IBOutlet weak var theaterData: UILabel!
     @IBOutlet weak var totalPrice: UILabel!
     @IBOutlet weak var buttonCinema: UIButton!
@@ -24,9 +25,10 @@ class SeatMapViewController: UIViewController {
     var dates: [Dates]?
     var cinemas: [CinemasDetails]?
     var times: [TimesDetails]?
+    var price: String?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        arrayNumberOfSeats = []
         let url = "http://ec2-52-76-75-52.ap-southeast-1.compute.amazonaws.com/schedule.json"
         Alamofire.request(url).responseObject{ (response: DataResponse<Schedule>) in
             let scheduleResult = response.result.value
@@ -42,7 +44,29 @@ class SeatMapViewController: UIViewController {
         }
         
         self.theaterData.text =  theaterDataString
-
+        
+        let url_seatMap = "http://ec2-52-76-75-52.ap-southeast-1.compute.amazonaws.com/seatmap.json"
+        
+        Alamofire.request(url_seatMap).responseObject{ (response: DataResponse<SeatMap>) in
+            let seatMap = response.result.value
+//            print(seatMap?.seatmap?.count)
+            
+            for var x in 0..<(seatMap?.seatmap?.count)!{
+                var line = ""
+                for var y in 0..<(seatMap?.seatmap?[x].count)! {
+                    
+                    print("\(x), \(y)")
+                   
+                    self.arrayNumberOfSeats.append((seatMap?.seatmap?[x][y])! as AnyObject)
+                }
+//                print(line)
+            }
+            
+            print("total: \(self.arrayNumberOfSeats.count)")
+            self.seatCollectionView.reloadData()
+        }
+        
+        
         // Do any additional setup after loading the view.
     }
 
@@ -76,6 +100,7 @@ class SeatMapViewController: UIViewController {
                 Alamofire.request(url).responseObject{ (response: DataResponse<Schedule>) in
                     let scheduleResult = response.result.value
                     self.times =  scheduleResult?.times?[index].times
+                    
                 }
             }))
         
@@ -104,6 +129,7 @@ class SeatMapViewController: UIViewController {
             actionSheetController.addAction(UIAlertAction(title: times.label, style: .default, handler: {
                 action in
                 self.buttonTimes.setTitle(times.label, for: .normal)
+                self.price = times.price
             }))
         }
         
@@ -112,33 +138,32 @@ class SeatMapViewController: UIViewController {
 
 }
 
-extension SeatMapViewController : UICollectionViewDelegate
-{
-    
-    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool
-    {
-        return true
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool
-    {
-        return true
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool
-    {
-        return true
-    }
+//extension SeatMapViewController : UICollectionViewDelegate
+//{
+//
+//    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool
+//    {
+//        return true
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool
+//    {
+//        return true
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool
+//    {
+//        return true
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+//    {
+////        print("Selected cell named: \(collectionViewDataSource[indexPath.row])")
+//    }
+//
+//}
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
-    {
-//        print("Selected cell named: \(collectionViewDataSource[indexPath.row])")
-    }
-    
-}
-
-extension SeatMapViewController : UICollectionViewDataSource
-{
+extension SeatMapViewController: UICollectionViewDataSource, UICollectionViewDelegate{
     
     func numberOfSections(in collectionView: UICollectionView) -> Int
     {
@@ -148,21 +173,23 @@ extension SeatMapViewController : UICollectionViewDataSource
   
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return 419;
+        return self.arrayNumberOfSeats.count;
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        let collectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "seatMap", for: indexPath)
+        let collectionViewCell = self.seatCollectionView.dequeueReusableCell(withReuseIdentifier: "seatMap", for: indexPath) as! SeatMapCollectionViewCell
         
-        let backgroundView: UIView = UIView(frame: collectionViewCell.frame)
-        backgroundView.backgroundColor = UIColor.yellow
-        collectionViewCell.selectedBackgroundView = backgroundView
         
+        
+        collectionViewCell.bgView.backgroundColor = UIColor.gray
 //        collectionViewCell.label.text = String(collectionViewDataSource[indexPath.row])
         
         return collectionViewCell
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+        {
+    ////        print("Selected cell named: \(collectionViewDataSource[indexPath.row])")
+        }
     
 }

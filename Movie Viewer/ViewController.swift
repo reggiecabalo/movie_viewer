@@ -66,8 +66,19 @@ class ViewController: UIViewController {
                 let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
                 let data_landscape = try? Data(contentsOf: url_poster_landscape!)
                 DispatchQueue.main.async {
-                    self.image_poster_landscape.image = UIImage(data: data_landscape!)
-                    self.image_poster.image = UIImage(data: data!)
+                    if data_landscape == nil {
+                        self.image_poster_landscape.image = nil
+                    } else {
+                        self.image_poster_landscape.image = UIImage(data: data_landscape!)
+                    }
+                    
+                    if data == nil {
+                        self.image_poster.image = nil
+                    } else {
+                        self.image_poster.image = UIImage(data: data!)
+                    }
+                    
+                    
                 }
             }
         }

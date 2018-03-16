@@ -77,8 +77,6 @@ class ViewController: UIViewController {
                     } else {
                         self.image_poster.image = UIImage(data: data!)
                     }
-                    
-                    
                 }
             }
         }

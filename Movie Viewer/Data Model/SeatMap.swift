@@ -21,7 +21,7 @@ class SeatMap: Mappable {
     
     func mapping(map: Map) {
         seatmap <- map["seatmap"]
-        available <- map["available"]
+        available <- map["available.seats"]
         seat_count <- map["seat_count"]
     }
 }

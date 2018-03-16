@@ -204,15 +204,18 @@ extension SeatMapViewController: UICollectionViewDataSource, UICollectionViewDel
                 cell.bgView.backgroundColor = UIColor.red
             }
             
-            var totalPrice: Double = 0
+            var totalPrice = ""
             if let amount = self.price {
                 
                 let am = Double(amount)! * Double((self.arraySelectedSeats?.count)!)
-                totalPrice = am
+                let numberFormatter = NumberFormatter()
+                numberFormatter.numberStyle = NumberFormatter.Style.decimal
+                let formattedNumber = numberFormatter.string(from: NSNumber(value:am))
+                totalPrice = formattedNumber!
             }
             
             
-            self.totalPrice.text = "Php \(totalPrice)0"
+            self.totalPrice.text = "Php \(totalPrice).00"
             self.selectedSeats.text =  "\(String(describing: self.arraySelectedSeats!.joined(separator: ", ")))"
         }
 }
